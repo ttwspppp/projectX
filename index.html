@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -6,251 +7,277 @@
 <title>ชิ้นส่วนต่างๆ ของคอมพิวเตอร์</title>
 
 <style>
-  * {
-    box-sizing: border-box;
-  }
+* {
+  box-sizing: border-box;
+}
 
-  body {
-    font-family: "Tahoma", sans-serif;
-    margin: 0;
-    min-height: 100vh;
+body {
+  font-family: "Tahoma", sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  background: #fafafa;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    background-image:
-      linear-gradient(
-        rgba(255,255,255,0.65),
-        rgba(255,255,255,0.65)
-      ),
-      url("image/background.png");
+  position: relative;
+  overflow-x: hidden;
+}
 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+/* รูปพื้นหลังด้านซ้ายและขวา */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  width: 25vw;
+  height: 100vh;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,0.35),
+      rgba(255,255,255,0.35)
+    ),
+    url("https://raw.githubusercontent.com/ttwspppp/uwuwuwuwuwuwu/main/image/background.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  z-index: -1;
+}
+
+body::before {
+  left: 0;
+}
+
+body::after {
+  right: 0;
+}
+
+h1 {
+  font-size: 22px;
+  text-align: center;
+  padding: 24px 10px 10px;
+  margin: 0;
+  color: #222;
+}
+
+.nav-wrap {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px 0 30px;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 10px 10px 16px;
+
+  max-height: 460px;
+  overflow-y: auto;
+
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+}
+
+nav::-webkit-scrollbar {
+  width: 8px;
+}
+
+nav::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+nav button {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+
+  width: 100%;
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  padding: 12px;
+
+  border: 3px solid transparent;
+  border-radius: 16px;
+
+  cursor: pointer;
+
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+nav button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+}
+
+nav button.active {
+  border-color: #222;
+  transform: scale(1.06);
+}
+
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+}
+
+footer {
+  padding: 10px;
+  font-size: 13px;
+  color: #555;
+  text-align: center;
+}
+
+/* Popup */
+.overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0,0,0,0.5);
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 10;
+
+  opacity: 0;
+  transition: opacity 0.2s ease;
+
+  padding: 20px;
+}
+
+.overlay.show {
+  display: flex;
+  opacity: 1;
+}
+
+.modal {
+  background: #fff;
+
+  max-width: 420px;
+  width: 90%;
+
+  padding: 24px;
+
+  border-radius: 10px;
+  border-top: 8px solid #333;
+
+  position: relative;
+
+  transform: scale(0.4);
+  opacity: 0;
+
+  transition:
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.25s ease;
+}
+
+.overlay.show .modal {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modal h2 {
+  margin-top: 0;
+  margin-right: 25px;
+}
+
+.modal p {
+  line-height: 1.6;
+  color: #333;
+}
+
+.modal .close-btn {
+  position: absolute;
+
+  top: 10px;
+  right: 14px;
+
+  border: none;
+  background: none;
+
+  font-size: 20px;
+  cursor: pointer;
+
+  color: #888;
+}
+
+.modal .more-link {
+  display: inline-block;
+
+  margin-top: 10px;
+
+  padding: 8px 14px;
+
+  border-radius: 6px;
+
+  color: #fff;
+
+  text-decoration: none;
+
+  font-size: 14px;
+}
+
+/* โทรศัพท์ */
+@media (max-width: 600px) {
+
+  body::before,
+  body::after {
+    width: 18vw;
   }
 
   h1 {
-    font-size: 22px;
-    text-align: center;
-    padding: 24px 10px 10px;
-    margin: 0;
-    color: #222;
+    font-size: 20px;
+    padding-top: 18px;
   }
+
   .nav-wrap {
-    width: 100%;
-    max-width: 300px;
-    padding: 10px 0 30px;
+    max-width: 320px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   nav {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    padding: 10px 10px 16px;
-
-    max-height: 460px;
-    overflow-y: auto;
-
-    scroll-snap-type: y proximity;
-    scroll-behavior: smooth;
-  }
-
-  nav::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  nav::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 4px;
+    max-height: 430px;
+    gap: 14px;
   }
 
   nav button {
-    flex: 0 0 auto;
-    scroll-snap-align: center;
-
-    width: 100%;
-    height: 70px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-    padding: 12px;
-
-    border: 3px solid transparent;
-    border-radius: 16px;
-
-    cursor: pointer;
-
-    font-size: 18px;
-    font-weight: bold;
-    color: #fff;
-
-    transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
-  }
-
-  nav button:hover {
-    transform: scale(1.03);
-    box-shadow: 0 6px 14px rgba(0,0,0,0.2);
-  }
-
-  nav button.active {
-    border-color: #222;
-    transform: scale(1.06);
-  }
-
-  main {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #999;
-  }
-
-  footer {
-    padding: 10px;
-    font-size: 13px;
-    color: #555;
-    text-align: center;
-  }
-
-
-  .overlay {
-    position: fixed;
-    inset: 0;
-
-    background: rgba(0,0,0,0.5);
-
-    display: none;
-    align-items: center;
-    justify-content: center;
-
-    z-index: 10;
-
-    opacity: 0;
-    transition: opacity 0.2s ease;
-
-    padding: 20px;
-  }
-
-  .overlay.show {
-    display: flex;
-    opacity: 1;
+    height: 65px;
+    font-size: 17px;
   }
 
   .modal {
-    background: #fff;
-
-    max-width: 420px;
-    width: 90%;
-
-    padding: 24px;
-
-    border-radius: 10px;
-
-    border-top: 8px solid #333;
-
-    position: relative;
-
-    transform: scale(0.4);
-    opacity: 0;
-
-    transition:
-      transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-      opacity 0.25s ease;
-  }
-
-  .overlay.show .modal {
-    transform: scale(1);
-    opacity: 1;
+    width: 95%;
+    padding: 20px;
   }
 
   .modal h2 {
-    margin-top: 0;
-    margin-right: 25px;
+    font-size: 21px;
   }
 
   .modal p {
-    line-height: 1.6;
-    color: #333;
+    font-size: 15px;
   }
-
-  .modal .close-btn {
-    position: absolute;
-
-    top: 10px;
-    right: 14px;
-
-    border: none;
-    background: none;
-
-    font-size: 20px;
-    cursor: pointer;
-
-    color: #888;
-  }
-
-  .modal .more-link {
-    display: inline-block;
-
-    margin-top: 10px;
-
-    padding: 8px 14px;
-
-    border-radius: 6px;
-
-    color: #fff;
-
-    text-decoration: none;
-
-    font-size: 14px;
-  }
-
- 
-
-  @media (max-width: 600px) {
-
-    h1 {
-      font-size: 20px;
-      padding-top: 18px;
-    }
-
-    .nav-wrap {
-      max-width: 320px;
-      padding-left: 10px;
-      padding-right: 10px;
-    }
-
-    nav {
-      max-height: 430px;
-      gap: 14px;
-    }
-
-    nav button {
-      height: 65px;
-      font-size: 17px;
-    }
-
-    .modal {
-      width: 95%;
-      padding: 20px;
-    }
-
-    .modal h2 {
-      font-size: 21px;
-    }
-
-    .modal p {
-      font-size: 15px;
-    }
-  }
+}
 </style>
 </head>
 
@@ -262,15 +289,11 @@
   <nav id="menu"></nav>
 </div>
 
-<main>
-</main>
+<main></main>
 
 <footer>
   จัดทำโดย นายธิติวุฒิ สมพงษ์
 </footer>
-
-
-
 
 <div class="overlay" id="overlay">
 
@@ -296,201 +319,126 @@
 
 </div>
 
-
 <script>
 
 const parts = {
 
   "CPU": {
     text: "CPU (Central Processing Unit) คือหน่วยประมวลผลกลาง ทำหน้าที่ประมวลผลคำสั่งต่างๆ ของคอมพิวเตอร์ เปรียบเสมือนสมองของเครื่อง ยิ่งมีความเร็วและจำนวนคอร์มาก ก็จะประมวลผลได้เร็วขึ้น",
-
     color: "#e74c3c",
-
     link: "https://th.wikipedia.org/wiki/หน่วยประมวลผลกลาง"
   },
 
-
   "GPU": {
     text: "GPU (Graphics Processing Unit) คือการ์ดจอ ทำหน้าที่ประมวลผลด้านภาพและกราฟิก ช่วยให้การแสดงผลภาพ วิดีโอ และเกมมีความลื่นไหลและสวยงามมากขึ้น",
-
     color: "#27ae60",
-
     link: "https://en.wikipedia.org/wiki/Graphics_processing_unit"
   },
 
-
   "Power supply": {
     text: "Power Supply (PSU) คือแหล่งจ่ายไฟ ทำหน้าที่แปลงไฟฟ้ากระแสสลับ (AC) จากปลั๊กไฟ เป็นไฟฟ้ากระแสตรง (DC) เพื่อจ่ายพลังงานให้กับชิ้นส่วนต่างๆ ภายในเครื่องคอมพิวเตอร์",
-
     color: "#f39c12",
-
     link: "https://en.wikipedia.org/wiki/Power_supply_unit_(computer)"
   },
 
-
   "Mainboard": {
     text: "Mainboard หรือ Motherboard คือแผงวงจรหลัก ทำหน้าที่เป็นศูนย์กลางในการเชื่อมต่ออุปกรณ์ทุกชิ้นเข้าด้วยกัน เช่น CPU, RAM, การ์ดจอ และอุปกรณ์เก็บข้อมูล",
-
     color: "#8e44ad",
-
     link: "https://en.wikipedia.org/wiki/Motherboard"
   },
 
-
   "RAM": {
     text: "RAM (Random Access Memory) คือหน่วยความจำชั่วคราว ใช้เก็บข้อมูลที่กำลังประมวลผลอยู่ในขณะนั้น ยิ่งมีความจุมาก ก็ยิ่งรองรับการทำงานหลายโปรแกรมพร้อมกันได้ดีขึ้น",
-
     color: "#2980b9",
-
     link: "https://en.wikipedia.org/wiki/Random-access_memory"
   },
 
-
   "SSD/HDD": {
     text: "SSD/HDD คืออุปกรณ์จัดเก็บข้อมูลถาวร โดย HDD (Hard Disk Drive) ใช้จานแม่เหล็กในการเก็บข้อมูล ส่วน SSD (Solid State Drive) ใช้ชิปหน่วยความจำ ทำให้อ่าน-เขียนข้อมูลได้เร็วกว่า HDD มาก",
-
     color: "#16a085",
-
     link: "https://en.wikipedia.org/wiki/Solid-state_drive"
   },
 
-
   "Case": {
     text: "Case หรือเคสคอมพิวเตอร์ คือโครงหรือกล่องที่ใช้บรรจุอุปกรณ์ต่างๆ ของคอมพิวเตอร์ไว้ภายใน ทำหน้าที่ป้องกันอุปกรณ์จากฝุ่นและความเสียหาย พร้อมช่วยจัดระเบียบสายไฟและระบายความร้อน",
-
     color: "#d35400",
-
     link: "https://en.wikipedia.org/wiki/Computer_case"
   }
 
 };
 
-
-const menu =
-  document.getElementById("menu");
-
-const overlay =
-  document.getElementById("overlay");
-
-const modal =
-  document.getElementById("modal");
-
-const modalTitle =
-  document.getElementById("modalTitle");
-
-const modalText =
-  document.getElementById("modalText");
-
-const modalLink =
-  document.getElementById("modalLink");
-
-const closeBtn =
-  document.getElementById("closeBtn");
-
-
-
+const menu = document.getElementById("menu");
+const overlay = document.getElementById("overlay");
+const modal = document.getElementById("modal");
+const modalTitle = document.getElementById("modalTitle");
+const modalText = document.getElementById("modalText");
+const modalLink = document.getElementById("modalLink");
+const closeBtn = document.getElementById("closeBtn");
 
 function openPart(name) {
 
   const part = parts[name];
 
   modalTitle.textContent = name;
+  modalTitle.style.color = part.color;
 
-  modalTitle.style.color =
-    part.color;
+  modalText.textContent = part.text;
 
-  modalText.textContent =
-    part.text;
+  modal.style.borderTopColor = part.color;
 
-  modal.style.borderTopColor =
-    part.color;
-
-  modalLink.href =
-    part.link;
-
-  modalLink.style.background =
-    part.color;
+  modalLink.href = part.link;
+  modalLink.style.background = part.color;
 
   overlay.classList.add("show");
 
+  document.querySelectorAll("nav button").forEach(btn => {
 
-  document
-    .querySelectorAll("nav button")
-    .forEach(btn => {
+    const isActive = btn.textContent === name;
 
-      const isActive =
-        btn.textContent === name;
+    btn.classList.toggle("active", isActive);
 
-      btn.classList.toggle(
-        "active",
-        isActive
-      );
+  });
 
-    });
 }
-
-
 
 function closeModal() {
-
   overlay.classList.remove("show");
-
 }
 
-
-closeBtn.onclick =
-  closeModal;
-
-
+closeBtn.onclick = closeModal;
 
 overlay.onclick = (e) => {
 
   if (e.target === overlay) {
-
     closeModal();
-
   }
 
 };
 
+document.addEventListener("keydown", (e) => {
 
-document.addEventListener(
-  "keydown",
-  (e) => {
-
-    if (e.key === "Escape") {
-
-      closeModal();
-
-    }
-
+  if (e.key === "Escape") {
+    closeModal();
   }
-);
 
+});
 
+Object.keys(parts).forEach((name) => {
 
-Object.keys(parts).forEach(
-  (name) => {
+  const btn = document.createElement("button");
 
-    const btn =
-      document.createElement("button");
+  btn.textContent = name;
 
-    btn.textContent =
-      name;
+  btn.style.background = parts[name].color;
 
-    btn.style.background =
-      parts[name].color;
+  btn.onclick = () => openPart(name);
 
-    btn.onclick =
-      () => openPart(name);
+  menu.appendChild(btn);
 
-    menu.appendChild(btn);
-
-  }
-);
+});
 
 </script>
 
 </body>
 </html>
-
+```
