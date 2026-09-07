@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -16,13 +16,13 @@
     margin: 0;
     min-height: 100vh;
 
-    /* ===== พื้นหลัง ===== */
+
     background-image:
       linear-gradient(
         rgba(255,255,255,0.65),
         rgba(255,255,255,0.65)
       ),
-      url("background.jpg");
+      url("background.png");
 
     background-size: cover;
     background-position: center;
@@ -41,8 +41,6 @@
     margin: 0;
     color: #222;
   }
-
-  /* แถบเมนูแบบเลื่อนขึ้นลง */
   .nav-wrap {
     width: 100%;
     max-width: 300px;
@@ -124,9 +122,6 @@
     text-align: center;
   }
 
-  /* =========================
-     POPUP / MODAL
-     ========================= */
 
   .overlay {
     position: fixed;
@@ -219,9 +214,7 @@
     font-size: 14px;
   }
 
-  /* =========================
-     ปรับสำหรับโทรศัพท์
-     ========================= */
+ 
 
   @media (max-width: 600px) {
 
@@ -278,9 +271,7 @@
 </footer>
 
 
-<!-- =========================
-     POPUP
-     ========================= -->
+
 
 <div class="overlay" id="overlay">
 
@@ -398,7 +389,7 @@ const closeBtn =
   document.getElementById("closeBtn");
 
 
-/* เปิดข้อมูล */
+
 
 function openPart(name) {
 
@@ -440,7 +431,6 @@ function openPart(name) {
 }
 
 
-/* ปิด Popup */
 
 function closeModal() {
 
@@ -453,7 +443,6 @@ closeBtn.onclick =
   closeModal;
 
 
-/* กดพื้นที่ด้านนอก Popup */
 
 overlay.onclick = (e) => {
 
@@ -465,8 +454,6 @@ overlay.onclick = (e) => {
 
 };
 
-
-/* กด ESC เพื่อปิด Popup */
 
 document.addEventListener(
   "keydown",
@@ -482,7 +469,6 @@ document.addEventListener(
 );
 
 
-/* สร้างปุ่มเมนู */
 
 Object.keys(parts).forEach(
   (name) => {
@@ -508,4 +494,4 @@ Object.keys(parts).forEach(
 
 </body>
 </html>
-```
+
